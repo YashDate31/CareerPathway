@@ -23,4 +23,4 @@ To provide students with guidance and clarity on choosing their future career pa
 
 ## ✨ Developed By
 
-Created with 💻 in Visual Studio Code by [Your Name].
+Created with 💻 in Visual Studio Code by [DY Patil].
