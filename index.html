@@ -13,7 +13,9 @@
   <!-- Navigation Bar -->
   <nav class="bg-indigo-700 text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold tracking-wider">CareerPathway</a>
+      <a href="index.html" class="text-2xl font-bold tracking-wider flex items-center">
+        <img src="logo.png" alt="CareerPathway Logo" class="h-8 w-8 mr-2"> CareerPathway
+      </a>
       <div class="hidden md:flex gap-6 text-sm font-medium">
         <a href="doctor.html" class="hover:text-indigo-300">Doctor</a>
         <a href="engineer.html" class="hover:text-indigo-300">Engineer</a>
@@ -46,9 +48,9 @@
     <p class="max-w-3xl mx-auto">CareerPathway is your roadmap to a successful future. We guide students toward various professional careers like Doctor, Engineer, Artist, Scientist, Software Developer, Entrepreneur, and more. Discover your passion, understand the journey, and take action.</p>
   </section>
 
-  <!-- Explore Careers -->
+  <!-- Famous Career Options -->
   <section class="p-10 bg-gray-50" data-aos="zoom-in">
-    <h2 class="text-3xl text-center font-bold mb-10">Explore Careers</h2>
+    <h2 class="text-3xl text-center font-bold mb-10">Famous Career Options</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       <a href="doctor.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up">👨‍⚕️ <strong>Doctor</strong></a>
       <a href="engineer.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="100">👷‍♂️ <strong>Engineer</strong></a>
@@ -57,133 +59,6 @@
       <a href="scientist.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="400">🔬 <strong>Scientist</strong></a>
       <a href="entrepreneur.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="500">🚀 <strong>Entrepreneur</strong></a>
     </div>
-  </section>
-
-  <!-- Career Selection Section -->
-  <section class="p-10 bg-white text-center" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-4">Choose Your Career Path</h2>
-    <p class="max-w-3xl mx-auto mb-6">Select a field of interest to explore related career options.</p>
-    <form id="careerForm" class="max-w-md mx-auto">
-      <select id="careerSelect" class="w-full p-3 border rounded mb-4">
-        <option value="">-- Select a Career --</option>
-        <option value="doctor.html">Doctor</option>
-        <option value="engineer.html">Engineer</option>
-        <option value="software-developer.html">Software Developer</option>
-        <option value="artist.html">Artist</option>
-        <option value="scientist.html">Scientist</option>
-        <option value="entrepreneur.html">Entrepreneur</option>
-        <option value="ca.html">Chartered Accountant (CA)</option>
-        <option value="ias.html">Indian Administrative Service (IAS)</option>
-        <option value="ips.html">Indian Police Service (IPS)</option>
-        <option value="lawyer.html">Lawyer</option>
-        <option value="teacher.html">Teacher</option>
-        <option value="pilot.html">Pilot</option>
-        <option value="chef.html">Chef</option>
-        <option value="nurse.html">Nurse</option>
-        <option value="architect.html">Architect</option>
-        <option value="data-scientist.html">Data Scientist</option>
-        <option value="digital-marketer.html">Digital Marketer</option>
-        <option value="civil-servant.html">Civil Servant</option>
-        <option value="psychologist.html">Psychologist</option>
-        <option value="pharmacist.html">Pharmacist</option>
-        <option value="journalist.html">Journalist</option>
-        <option value="mechanical-engineer.html">Mechanical Engineer</option>
-        <option value="electrical-engineer.html">Electrical Engineer</option>
-        <option value="biotechnologist.html">Biotechnologist</option>
-        <option value="environmentalist.html">Environmentalist</option>
-        <option value="event-manager.html">Event Manager</option>
-        <option value="fashion-designer.html">Fashion Designer</option>
-        <option value="graphic-designer.html">Graphic Designer</option>
-        <option value="interior-designer.html">Interior Designer</option>
-        <option value="marine-biologist.html">Marine Biologist</option>
-        <option value="microbiologist.html">Microbiologist</option>
-        <option value="nutritionist.html">Nutritionist</option>
-        <option value="physiotherapist.html">Physiotherapist</option>
-        <option value="politician.html">Politician</option>
-        <option value="social-worker.html">Social Worker</option>
-        <option value="statistician.html">Statistician</option>
-        <option value="veterinarian.html">Veterinarian</option>
-        <option value="web-developer.html">Web Developer</option>
-        <option value="ai-specialist.html">AI Specialist</option>
-        <option value="cybersecurity-expert.html">Cybersecurity Expert</option>
-        <option value="blockchain-developer.html">Blockchain Developer</option>
-        <option value="game-developer.html">Game Developer</option>
-        <option value="robotics-engineer.html">Robotics Engineer</option>
-        <option value="space-scientist.html">Space Scientist</option>
-        <option value="astronomer.html">Astronomer</option>
-        <option value="forensic-scientist.html">Forensic Scientist</option>
-        <option value="criminologist.html">Criminologist</option>
-        <option value="linguist.html">Linguist</option>
-        <option value="historian.html">Historian</option>
-        <option value="anthropologist.html">Anthropologist</option>
-        <option value="economist.html">Economist</option>
-        <option value="investment-banker.html">Investment Banker</option>
-        <option value="stock-analyst.html">Stock Analyst</option>
-        <option value="actuary.html">Actuary</option>
-        <option value="content-writer.html">Content Writer</option>
-        <option value="seo-specialist.html">SEO Specialist</option>
-        <option value="youtuber.html">YouTuber</option>
-        <option value="blogger.html">Blogger</option>
-        <option value="podcaster.html">Podcaster</option>
-        <option value="photographer.html">Photographer</option>
-        <option value="videographer.html">Videographer</option>
-        <option value="film-director.html">Film Director</option>
-        <option value="actor.html">Actor</option>
-        <option value="singer.html">Singer</option>
-        <option value="musician.html">Musician</option>
-        <option value="dancer.html">Dancer</option>
-        <option value="athlete.html">Athlete</option>
-        <option value="coach.html">Coach</option>
-        <option value="fitness-trainer.html">Fitness Trainer</option>
-        <option value="yoga-instructor.html">Yoga Instructor</option>
-        <option value="mountaineer.html">Mountaineer</option>
-        <option value="tour-guide.html">Tour Guide</option>
-        <option value="travel-blogger.html">Travel Blogger</option>
-        <option value="wildlife-photographer.html">Wildlife Photographer</option>
-        <option value="zoologist.html">Zoologist</option>
-        <option value="horticulturist.html">Horticulturist</option>
-        <option value="agriculturist.html">Agriculturist</option>
-        <option value="forester.html">Forester</option>
-        <option value="geologist.html">Geologist</option>
-        <option value="meteorologist.html">Meteorologist</option>
-        <option value="oceanographer.html">Oceanographer</option>
-        <option value="chemist.html">Chemist</option>
-        <option value="physicist.html">Physicist</option>
-        <option value="mathematician.html">Mathematician</option>
-        <option value="astronaut.html">Astronaut</option>
-        <option value="army-officer.html">Army Officer</option>
-        <option value="navy-officer.html">Navy Officer</option>
-        <option value="air-force-officer.html">Air Force Officer</option>
-        <option value="firefighter.html">Firefighter</option>
-        <option value="paramedic.html">Paramedic</option>
-        <option value="emergency-manager.html">Emergency Manager</option>
-        <option value="disaster-management-expert.html">Disaster Management Expert</option>
-        <option value="ngo-worker.html">NGO Worker</option>
-        <option value="human-rights-activist.html">Human Rights Activist</option>
-        <option value="environmental-activist.html">Environmental Activist</option>
-        <option value="peacekeeper.html">Peacekeeper</option>
-        <option value="diplomat.html">Diplomat</option>
-        <option value="translator.html">Translator</option>
-        <option value="interpreter.html">Interpreter</option>
-        <option value="tourism-manager.html">Tourism Manager</option>
-        <option value="hotel-manager.html">Hotel Manager</option>
-        <option value="hospital-administrator.html">Hospital Administrator</option>
-        <option value="supply-chain-manager.html">Supply Chain Manager</option>
-        <option value="logistics-manager.html">Logistics Manager</option>
-        <option value="operations-manager.html">Operations Manager</option>
-        <option value="business-analyst.html">Business Analyst</option>
-        <option value="hr-manager.html">HR Manager</option>
-        <option value="marketing-manager.html">Marketing Manager</option>
-        <option value="sales-manager.html">Sales Manager</option>
-        <option value="product-manager.html">Product Manager</option>
-        <option value="project-manager.html">Project Manager</option>
-        <option value="ceo.html">CEO</option>
-        <option value="cto.html">CTO</option>
-        <option value="cfo.html">CFO</option>
-    
-      </select>
-      <button type="button" onclick="navigateToCareer()" class="bg-indigo-700 text-white px-6 py-2 rounded">Explore</button>
-    </form>
   </section>
 
   <!-- Search Your Career Section -->
@@ -225,27 +100,138 @@
 
     function filterCareers() {
       const searchInput = document.getElementById('careerSearch').value.toLowerCase();
-      const careerSelect = document.getElementById('careerSelect');
-      const options = careerSelect.options;
-      const searchResults = document.getElementById('searchResults');
+      const careerOptions = [
+        { name: 'Actor', link: 'actor.html' },
+        { name: 'Actuary', link: 'actuary.html' },
+        { name: 'Agriculturist', link: 'agriculturist.html' },
+        { name: 'AI Specialist', link: 'ai-specialist.html' },
+        { name: 'Air Force Officer', link: 'air-force-officer.html' },
+        { name: 'Anthropologist', link: 'anthropologist.html' },
+        { name: 'Architect', link: 'architect.html' },
+        { name: 'Army Officer', link: 'army-officer.html' },
+        { name: 'Artist', link: 'artist.html' },
+        { name: 'Astronaut', link: 'astronaut.html' },
+        { name: 'Astronomer', link: 'astronomer.html' },
+        { name: 'Athlete', link: 'athlete.html' },
+        { name: 'Biotechnologist', link: 'biotechnologist.html' },
+        { name: 'Blockchain Developer', link: 'blockchain-developer.html' },
+        { name: 'Blogger', link: 'blogger.html' },
+        { name: 'Business Analyst', link: 'business-analyst.html' },
+        { name: 'CA', link: 'ca.html' },
+        { name: 'CEO', link: 'ceo.html' },
+        { name: 'CFO', link: 'cfo.html' },
+        { name: 'Chef', link: 'chef.html' },
+        { name: 'Chemist', link: 'chemist.html' },
+        { name: 'Civil Servant', link: 'civil-servant.html' },
+        { name: 'Coach', link: 'coach.html' },
+        { name: 'Content Writer', link: 'content-writer.html' },
+        { name: 'Criminologist', link: 'criminologist.html' },
+        { name: 'CTO', link: 'cto.html' },
+        { name: 'Cybersecurity Expert', link: 'cybersecurity-expert.html' },
+        { name: 'Dancer', link: 'dancer.html' },
+        { name: 'Data Scientist', link: 'data-scientist.html' },
+        { name: 'Digital Marketer', link: 'digital-marketer.html' },
+        { name: 'Diplomat', link: 'diplomat.html' },
+        { name: 'Disaster Management Expert', link: 'disaster-management-expert.html' },
+        { name: 'Doctor', link: 'doctor.html' },
+        { name: 'Economist', link: 'economist.html' },
+        { name: 'Electrical Engineer', link: 'electrical-engineer.html' },
+        { name: 'Emergency Manager', link: 'emergency-manager.html' },
+        { name: 'Engineer', link: 'engineer.html' },
+        { name: 'Entrepreneur', link: 'entrepreneur.html' },
+        { name: 'Environmental Activist', link: 'environmental-activist.html' },
+        { name: 'Environmentalist', link: 'environmentalist.html' },
+        { name: 'Event Manager', link: 'event-manager.html' },
+        { name: 'Fashion Designer', link: 'fashion-designer.html' },
+        { name: 'Film Director', link: 'film-director.html' },
+        { name: 'Firefighter', link: 'firefighter.html' },
+        { name: 'Fitness Trainer', link: 'fitness-trainer.html' },
+        { name: 'Forensic Scientist', link: 'forensic-scientist.html' },
+        { name: 'Forester', link: 'forester.html' },
+        { name: 'Game Developer', link: 'game-developer.html' },
+        { name: 'Geologist', link: 'geologist.html' },
+        { name: 'Graphic Designer', link: 'graphic-designer.html' },
+        { name: 'Historian', link: 'historian.html' },
+        { name: 'Horticulturist', link: 'horticulturist.html' },
+        { name: 'Hospital Administrator', link: 'hospital-administrator.html' },
+        { name: 'Hotel Manager', link: 'hotel-manager.html' },
+        { name: 'HR Manager', link: 'hr-manager.html' },
+        { name: 'Human Rights Activist', link: 'human-rights-activist.html' },
+        { name: 'IAS', link: 'ias.html' },
+        { name: 'Interior Designer', link: 'interior-designer.html' },
+        { name: 'Interpreter', link: 'interpreter.html' },
+        { name: 'Investment Banker', link: 'investment-banker.html' },
+        { name: 'IPS', link: 'ips.html' },
+        { name: 'Journalist', link: 'journalist.html' },
+        { name: 'Lawyer', link: 'lawyer.html' },
+        { name: 'Linguist', link: 'linguist.html' },
+        { name: 'Logistics Manager', link: 'logistics-manager.html' },
+        { name: 'Marine Biologist', link: 'marine-biologist.html' },
+        { name: 'Marketing Manager', link: 'marketing-manager.html' },
+        { name: 'Mathematician', link: 'mathematician.html' },
+        { name: 'Mechanical Engineer', link: 'mechanical-engineer.html' },
+        { name: 'Meteorologist', link: 'meteorologist.html' },
+        { name: 'Microbiologist', link: 'microbiologist.html' },
+        { name: 'Mountaineer', link: 'mountaineer.html' },
+        { name: 'Musician', link: 'musician.html' },
+        { name: 'Navy Officer', link: 'navy-officer.html' },
+        { name: 'NGO Worker', link: 'ngo-worker.html' },
+        { name: 'Nurse', link: 'nurse.html' },
+        { name: 'Nutritionist', link: 'nutritionist.html' },
+        { name: 'Oceanographer', link: 'oceanographer.html' },
+        { name: 'Operations Manager', link: 'operations-manager.html' },
+        { name: 'Paramedic', link: 'paramedic.html' },
+        { name: 'Peacekeeper', link: 'peacekeeper.html' },
+        { name: 'Pharmacist', link: 'pharmacist.html' },
+        { name: 'Photographer', link: 'photographer.html' },
+        { name: 'Physicist', link: 'physicist.html' },
+        { name: 'Physiotherapist', link: 'physiotherapist.html' },
+        { name: 'Pilot', link: 'pilot.html' },
+        { name: 'Podcaster', link: 'podcaster.html' },
+        { name: 'Politician', link: 'politician.html' },
+        { name: 'Product Manager', link: 'product-manager.html' },
+        { name: 'Project Manager', link: 'project-manager.html' },
+        { name: 'Psychologist', link: 'psychologist.html' },
+        { name: 'Robotics Engineer', link: 'robotics-engineer.html' },
+        { name: 'Sales Manager', link: 'sales-manager.html' },
+        { name: 'SEO Specialist', link: 'seo-specialist.html' },
+        { name: 'Singer', link: 'singer.html' },
+        { name: 'Social Worker', link: 'social-worker.html' },
+        { name: 'Software Developer', link: 'software-developer.html' },
+        { name: 'Space Scientist', link: 'space-scientist.html' },
+        { name: 'Statistician', link: 'statistician.html' },
+        { name: 'Stock Analyst', link: 'stock-analyst.html' },
+        { name: 'Supply Chain Manager', link: 'supply-chain-manager.html' },
+        { name: 'Teacher', link: 'teacher.html' },
+        { name: 'Tour Guide', link: 'tour-guide.html' },
+        { name: 'Tourism Manager', link: 'tourism-manager.html' },
+        { name: 'Translator', link: 'translator.html' },
+        { name: 'Travel Blogger', link: 'travel-blogger.html' },
+        { name: 'Veterinarian', link: 'veterinarian.html' },
+        { name: 'Videographer', link: 'videographer.html' },
+        { name: 'Web Developer', link: 'web-developer.html' },
+        { name: 'Wildlife Photographer', link: 'wildlife-photographer.html' },
+        { name: 'Yoga Instructor', link: 'yoga-instructor.html' },
+        { name: 'YouTuber', link: 'youtuber.html' },
+        { name: 'Zoologist', link: 'zoologist.html' }
+      ];
 
-      // Clear previous results
+      const searchResults = document.getElementById('searchResults');
       searchResults.innerHTML = '';
 
-      for (let i = 0; i < options.length; i++) {
-        const option = options[i];
-        const text = option.textContent.toLowerCase();
+      const filteredOptions = careerOptions.filter(option =>
+        option.name.toLowerCase().includes(searchInput)
+      );
 
-        // Filter dropdown options
-        option.style.display = text.includes(searchInput) ? '' : 'none';
-
-        // Add matching results to the list
-        if (text.includes(searchInput) && searchInput !== '') {
+      if (filteredOptions.length === 0 && searchInput !== '') {
+        searchResults.innerHTML = '<li class="p-2 text-gray-500">No results found.</li>';
+      } else {
+        filteredOptions.forEach(option => {
           const listItem = document.createElement('li');
           listItem.className = 'p-2 hover:bg-gray-100 rounded';
-          listItem.innerHTML = `<a href="${option.value}" class="text-indigo-700 hover:underline">${option.textContent}</a>`;
+          listItem.innerHTML = `<a href="${option.link}" class="text-indigo-700 hover:underline">${option.name}</a>`;
           searchResults.appendChild(listItem);
-        }
+        });
       }
     }
   </script>
