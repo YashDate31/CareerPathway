@@ -42,6 +42,35 @@
     </p>
   </section>
 
+  <!-- Updated Search Your Career Section -->
+  <section class="p-10 bg-gray-50 text-center border-4 border-indigo-500 rounded-lg shadow-lg" data-aos="fade-up">
+    <h2 class="text-3xl font-semibold mb-4 text-indigo-700">Search Your Career</h2>
+    <p class="max-w-3xl mx-auto mb-6 text-indigo-600">Type to find your desired career from the list below. We are providing detailed information on <strong>120+ career options</strong> to help you find the right path.</p>
+    <div class="relative max-w-md mx-auto">
+      <input 
+        type="text" 
+        id="careerSearch" 
+        class="w-full p-4 pl-10 border rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+        placeholder="🔍 Search for a career..." 
+        oninput="filterCareers()"
+      >
+      <svg 
+        class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
+        xmlns="http://www.w3.org/2000/svg" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor" 
+        width="20" 
+        height="20"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18l6-6m0 0l-6-6m6 6H3" />
+      </svg>
+    </div>
+    <ul id="searchResults" class="text-left max-w-md mx-auto bg-white shadow-md rounded p-4 mt-4">
+      <!-- Results will be dynamically added here -->
+    </ul>
+  </section>
+
   <!-- About -->
   <section class="p-10 bg-white text-center" data-aos="fade-up">
     <h2 class="text-3xl font-semibold mb-4">What is CareerPathway?</h2>
@@ -52,23 +81,13 @@
   <section class="p-10 bg-gray-50" data-aos="zoom-in">
     <h2 class="text-3xl text-center font-bold mb-10">Famous Career Options</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="doctor.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up">👨‍⚕️ <strong>Doctor</strong></a>
-      <a href="engineer.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="100">👷‍♂️ <strong>Engineer</strong></a>
-      <a href="software-developer.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="200">💻 <strong>Software Developer</strong></a>
-      <a href="artist.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="300">🎨 <strong>Artist</strong></a>
-      <a href="scientist.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="400">🔬 <strong>Scientist</strong></a>
-      <a href="entrepreneur.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition" data-aos="fade-up" data-aos-delay="500">🚀 <strong>Entrepreneur</strong></a>
+      <a href="doctor.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn">👨‍⚕️ <strong>Doctor</strong></a>
+      <a href="engineer.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn" data-aos-delay="100">👷‍♂️ <strong>Engineer</strong></a>
+      <a href="software-developer.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn" data-aos-delay="200">💻 <strong>Software Developer</strong></a>
+      <a href="artist.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn" data-aos-delay="300">🎨 <strong>Artist</strong></a>
+      <a href="scientist.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn" data-aos-delay="400">🔬 <strong>Scientist</strong></a>
+      <a href="entrepreneur.html" class="bg-white p-6 rounded-xl shadow hover:shadow-lg transform hover:scale-105 transition animate__animated animate__fadeIn" data-aos-delay="500">🚀 <strong>Entrepreneur</strong></a>
     </div>
-  </section>
-
-  <!-- Search Your Career Section -->
-  <section class="p-10 bg-gray-50 text-center" data-aos="fade-up">
-    <h2 class="text-3xl font-semibold mb-4">Search Your Career</h2>
-    <p class="max-w-3xl mx-auto mb-6">Type to find your desired career from the list below.</p>
-    <input type="text" id="careerSearch" class="w-full p-3 border rounded mb-4" placeholder="Search for a career..." oninput="filterCareers()">
-    <ul id="searchResults" class="text-left max-w-md mx-auto bg-white shadow-md rounded p-4">
-      <!-- Results will be dynamically added here -->
-    </ul>
   </section>
 
   <!-- Slogan Section -->
@@ -86,7 +105,11 @@
   <!-- AOS JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    AOS.init();
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+    });
 
     function navigateToCareer() {
       const careerSelect = document.getElementById('careerSelect');
