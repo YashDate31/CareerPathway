@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Quiz - CareerPathway</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    .quiz-container {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+    .question-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.5s ease;
+    }
+    .question-card.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .option-btn {
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin: 10px 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .option-btn:hover {
+      background: #e9ecef;
+      border-color: #667eea;
+      transform: translateX(5px);
+    }
+    .option-btn.selected {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border-color: #667eea;
+    }
+    .progress-bar {
+      height: 8px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    .set-indicator {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin: 0 10px;
+      transition: all 0.3s ease;
+    }
+    .set-indicator.completed {
+      background: linear-gradient(45deg, #10b981, #059669);
+      color: white;
+    }
+    .set-indicator.active {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      transform: scale(1.2);
+    }
+    .set-indicator.pending {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body class="quiz-container">
+  
+  <!-- Navigation -->
+  <nav class="bg-white bg-opacity-10 backdrop-blur-lg fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-white">CareerPathway Quiz</a>
+      <a href="index.html" class="text-white hover:text-gray-300 transition">← Back to Home</a>
+    </div>
+  </nav>
+
+  <div class="pt-20 pb-10">
+    <div class="max-w-4xl mx-auto px-4">
+      
+      <!-- Quiz Header -->
+      <div class="text-center text-white mb-8" data-aos="fade-down">
+        <h1 class="text-4xl font-bold mb-4">🎯 Discover Your Perfect Career Path</h1>
+        <p class="text-xl opacity-90">Answer 30 questions across 3 sets to find your ideal career match!</p>
+      </div>
+
+      <!-- Set Progress Indicators -->
+      <div class="flex justify-center mb-8" data-aos="fade-up">
+        <div class="flex items-center">
+          <div class="set-indicator active" id="set1-indicator">
+            <span>Set 1</span>
+          </div>
+          <div class="h-1 w-16 bg-white bg-opacity-30"></div>
+          <div class="set-indicator pending" id="set2-indicator">
+            <span>Set 2</span>
+          </div>
+          <div class="h-1 w-16 bg-white bg-opacity-30"></div>
+          <div class="set-indicator pending" id="set3-indicator">
+            <span>Set 3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="bg-white bg-opacity-20 rounded-full h-3 mb-8" data-aos="fade-up">
+        <div class="progress-bar h-full rounded-full" id="progressBar" style="width: 0%"></div>
+      </div>
+
+      <!-- Quiz Container -->
+      <div id="quizContainer" class="min-h-96">
+        <!-- Questions will be loaded here -->
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between items-center mt-8" id="navigationButtons">
+        <button onclick="previousQuestion()" class="bg-white bg-opacity-20 text-white px-6 py-3 rounded-lg hover:bg-opacity-30 transition" id="prevBtn" style="display: none;">
+          ← Previous
+        </button>
+        <div class="text-center text-white">
+          <span id="questionCounter">Question 1 of 30</span>
+        </div>
+        <button onclick="nextQuestion()" class="bg-white text-purple-600 px-6 py-3 rounded-lg hover:bg-gray-100 transition font-bold" id="nextBtn">
+          Next →
+        </button>
+      </div>
+
+      <!-- Results Section (Hidden Initially) -->
+      <div id="resultsSection" class="hidden">
+        <div class="question-card text-center" data-aos="zoom-in">
+          <h2 class="text-3xl font-bold mb-6 text-gray-800">🎉 Your Quiz Results!</h2>
+          <div id="resultsContent" class="space-y-4">
+            <!-- Results will be displayed here -->
+          </div>
+          <div class="mt-8 flex justify-center space-x-4">
+            <button onclick="restartQuiz()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-3 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition">
+              🔄 Retake Quiz
+            </button>
+            <a href="index.html" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition">
+              🏠 Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+    });
+
+    // Quiz Data - 30 Questions divided into 3 sets
+    const quizData = {
+      set1: [
+        {
+          question: "What type of environment do you prefer to work in?",
+          options: [
+            { text: "🏥 Hospital or medical facility", career: "medical" },
+            { text: "💻 Tech office or remote workspace", career: "tech" },
+            { text: "🎨 Creative studio or artistic space", career: "creative" },
+            { text: "🏢 Corporate office environment", career: "business" }
+          ]
+        },
+        {
+          question: "Which activity sounds most appealing to you?",
+          options: [
+            { text: "🔬 Conducting scientific experiments", career: "science" },
+            { text: "👥 Leading team meetings and presentations", career: "business" },
+            { text: "🎭 Performing or creating artistic content", career: "creative" },
+            { text: "⚖️ Analyzing legal documents and cases", career: "legal" }
+          ]
+        },
+        {
+          question: "What motivates you most in your career?",
+          options: [
+            { text: "💰 High salary and financial security", career: "business" },
+            { text: "❤️ Helping others and making a difference", career: "service" },
+            { text: "🏆 Recognition and fame", career: "creative" },
+            { text: "🔍 Discovering new knowledge", career: "science" }
+          ]
+        },
+        {
+          question: "How do you prefer to solve problems?",
+          options: [
+            { text: "📊 Using data and analytics", career: "tech" },
+            { text: "🤝 Collaborating with others", career: "business" },
+            { text: "💡 Creative and innovative thinking", career: "creative" },
+            { text: "📚 Research and systematic approach", career: "science" }
+          ]
+        },
+        {
+          question: "What's your ideal work schedule?",
+          options: [
+            { text: "🕘 Regular 9-5 office hours", career: "business" },
+            { text: "🌙 Flexible hours, including nights", career: "creative" },
+            { text: "🚨 Shift work with emergency calls", career: "service" },
+            { text: "🏠 Remote work with flexible timing", career: "tech" }
+          ]
+        },
+        {
+          question: "Which skill do you want to develop most?",
+          options: [
+            { text: "👨‍💻 Programming and coding", career: "tech" },
+            { text: "🗣️ Public speaking and communication", career: "business" },
+            { text: "🎨 Artistic and creative abilities", career: "creative" },
+            { text: "🔬 Scientific research methods", career: "science" }
+          ]
+        },
+        {
+          question: "What type of impact do you want to make?",
+          options: [
+            { text: "🌍 Global impact through innovation", career: "tech" },
+            { text: "👥 Direct impact on individuals", career: "service" },
+            { text: "🏛️ Societal impact through institutions", career: "legal" },
+            { text: "🎭 Cultural impact through arts", career: "creative" }
+          ]
+        },
+        {
+          question: "How do you handle stress and pressure?",
+          options: [
+            { text: "📈 Thrive under pressure and deadlines", career: "business" },
+            { text: "🧘 Prefer calm, peaceful environments", career: "creative" },
+            { text: "🚑 Excel in high-stress emergency situations", career: "service" },
+            { text: "🔍 Work methodically to reduce stress", career: "science" }
+          ]
+        },
+        {
+          question: "What's your preferred learning style?",
+          options: [
+            { text: "🛠️ Hands-on practical experience", career: "tech" },
+            { text: "📖 Reading and theoretical study", career: "science" },
+            { text: "👥 Learning from others and mentoring", career: "business" },
+            { text: "🎨 Creative experimentation", career: "creative" }
+          ]
+        },
+        {
+          question: "Which work environment excites you most?",
+          options: [
+            { text: "🏥 Fast-paced medical setting", career: "medical" },
+            { text: "🏢 Dynamic business environment", career: "business" },
+            { text: "🎬 Creative and artistic spaces", career: "creative" },
+            { text: "🔬 Research laboratories", career: "science" }
+          ]
+        }
+      ],
+      set2: [
+        {
+          question: "What type of projects interest you most?",
+          options: [
+            { text: "💻 Building apps and software", career: "tech" },
+            { text: "🏗️ Creating physical structures", career: "engineering" },
+            { text: "📝 Writing and content creation", career: "creative" },
+            { text: "💼 Business strategy and planning", career: "business" }
+          ]
+        },
+        {
+          question: "How do you prefer to interact with people?",
+          options: [
+            { text: "👥 Large groups and presentations", career: "business" },
+            { text: "🤝 One-on-one counseling sessions", career: "service" },
+            { text: "👨‍💻 Minimal interaction, focus on work", career: "tech" },
+            { text: "🎭 Performing for audiences", career: "creative" }
+          ]
+        },
+        {
+          question: "What's your approach to risk-taking?",
+          options: [
+            { text: "🚀 Love taking calculated risks", career: "business" },
+            { text: "🛡️ Prefer safe, proven methods", career: "service" },
+            { text: "🎨 Take creative risks for innovation", career: "creative" },
+            { text: "📊 Analyze all data before decisions", career: "science" }
+          ]
+        },
+        {
+          question: "Which technology interests you most?",
+          options: [
+            { text: "🤖 Artificial Intelligence and Machine Learning", career: "tech" },
+            { text: "🏥 Medical equipment and devices", career: "medical" },
+            { text: "🎮 Gaming and entertainment tech", career: "creative" },
+            { text: "📱 Business and productivity apps", career: "business" }
+          ]
+        },
+        {
+          question: "What's your ideal team size?",
+          options: [
+            { text: "👤 Working alone or small teams", career: "tech" },
+            { text: "👥 Medium-sized collaborative teams", career: "business" },
+            { text: "🏢 Large organizational teams", career: "service" },
+            { text: "🎭 Flexible team sizes based on projects", career: "creative" }
+          ]
+        },
+        {
+          question: "How important is work-life balance?",
+          options: [
+            { text: "⚖️ Extremely important, strict boundaries", career: "service" },
+            { text: "🔄 Flexible, varies by project", career: "creative" },
+            { text: "📈 Willing to work long hours for success", career: "business" },
+            { text: "💻 Prefer remote work flexibility", career: "tech" }
+          ]
+        },
+        {
+          question: "What type of recognition do you value most?",
+          options: [
+            { text: "🏆 Public awards and accolades", career: "creative" },
+            { text: "💰 Financial rewards and bonuses", career: "business" },
+            { text: "🙏 Gratitude from people you've helped", career: "service" },
+            { text: "📚 Peer recognition in academic circles", career: "science" }
+          ]
+        },
+        {
+          question: "Which subject did you enjoy most in school?",
+          options: [
+            { text: "🧮 Mathematics and Logic", career: "tech" },
+            { text: "🔬 Science and Biology", career: "science" },
+            { text: "🎨 Arts and Literature", career: "creative" },
+            { text: "📈 Economics and Business Studies", career: "business" }
+          ]
+        },
+        {
+          question: "What's your preferred method of communication?",
+          options: [
+            { text: "📧 Email and written communication", career: "tech" },
+            { text: "🗣️ Face-to-face meetings", career: "business" },
+            { text: "🎥 Visual and multimedia presentations", career: "creative" },
+            { text: "📊 Data and charts", career: "science" }
+          ]
+        },
+        {
+          question: "How do you define success?",
+          options: [
+            { text: "💰 Financial independence", career: "business" },
+            { text: "🌟 Personal fulfillment and happiness", career: "creative" },
+            { text: "🌍 Making a positive impact on society", career: "service" },
+            { text: "🔬 Contributing to human knowledge", career: "science" }
+          ]
+        }
+      ],
+      set3: [
+        {
+          question: "What's your ideal work location?",
+          options: [
+            { text: "🏢 Modern office building", career: "business" },
+            { text: "🏠 Home office or remote", career: "tech" },
+            { text: "🌳 Outdoor or field work", career: "service" },
+            { text: "🎨 Creative studio or workshop", career: "creative" }
+          ]
+        },
+        {
+          question: "Which challenge excites you most?",
+          options: [
+            { text: "🧩 Solving complex technical problems", career: "tech" },
+            { text: "👥 Managing and leading people", career: "business" },
+            { text: "🎯 Creating something entirely new", career: "creative" },
+            { text: "🔬 Understanding natural phenomena", career: "science" }
+          ]
+        },
+        {
+          question: "What's your preferred pace of work?",
+          options: [
+            { text: "⚡ Fast-paced and dynamic", career: "business" },
+            { text: "🐌 Slow and methodical", career: "science" },
+            { text: "🎵 Varies with creative inspiration", career: "creative" },
+            { text: "⏰ Consistent and structured", career: "service" }
+          ]
+        },
+        {
+          question: "How do you handle failure or setbacks?",
+          options: [
+            { text: "🔄 Learn quickly and adapt", career: "business" },
+            { text: "🔍 Analyze what went wrong", career: "science" },
+            { text: "💡 Use it as creative inspiration", career: "creative" },
+            { text: "🤝 Seek support from others", career: "service" }
+          ]
+        },
+        {
+          question: "What's most important in your career?",
+          options: [
+            { text: "📈 Growth and advancement opportunities", career: "business" },
+            { text: "🛡️ Job security and stability", career: "service" },
+            { text: "🎨 Creative freedom and expression", career: "creative" },
+            { text: "🔬 Intellectual stimulation", career: "science" }
+          ]
+        },
+        {
+          question: "Which work benefit matters most to you?",
+          options: [
+            { text: "💰 High salary and bonuses", career: "business" },
+            { text: "🏥 Excellent health benefits", career: "service" },
+            { text: "🏖️ Flexible time off", career: "creative" },
+            { text: "📚 Professional development opportunities", career: "tech" }
+          ]
+        },
+        {
+          question: "What type of problems do you enjoy solving?",
+          options: [
+            { text: "💻 Technical and logical problems", career: "tech" },
+            { text: "👥 People and relationship issues", career: "service" },
+            { text: "🎨 Creative and design challenges", career: "creative" },
+            { text: "💼 Strategic business problems", career: "business" }
+          ]
+        },
+        {
+          question: "How do you prefer to measure your impact?",
+          options: [
+            { text: "📊 Quantitative metrics and data", career: "tech" },
+            { text: "❤️ Personal testimonials and stories", career: "service" },
+            { text: "🏆 Awards and recognition", career: "creative" },
+            { text: "💰 Revenue and profit generated", career: "business" }
+          ]
+        },
+        {
+          question: "What's your attitude toward continuous learning?",
+          options: [
+            { text: "🚀 Love learning new technologies", career: "tech" },
+            { text: "📚 Enjoy academic and theoretical learning", career: "science" },
+            { text: "🎨 Learn through creative experimentation", career: "creative" },
+            { text: "💼 Focus on practical business skills", career: "business" }
+          ]
+        },
+        {
+          question: "What legacy do you want to leave?",
+          options: [
+            { text: "🏢 Built successful businesses", career: "business" },
+            { text: "❤️ Helped many people", career: "service" },
+            { text: "🎨 Created beautiful art", career: "creative" },
+            { text: "🔬 Advanced human knowledge", career: "science" }
+          ]
+        }
+      ]
+    };
+
+    // Quiz state
+    let currentSet = 1;
+    let currentQuestion = 0;
+    let totalQuestions = 30;
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let careerScores = {
+      tech: 0,
+      business: 0,
+      creative: 0,
+      science: 0,
+      service: 0,
+      medical: 0,
+      legal: 0,
+      engineering: 0
+    };
+
+    // Load first question
+    window.onload = function() {
+      loadQuestion();
+    };
+
+    function loadQuestion() {
+      const container = document.getElementById('quizContainer');
+      const setKey = `set${currentSet}`;
+      const questionData = quizData[setKey][currentQuestion];
+      
+      container.innerHTML = `
+        <div class="question-card active" data-aos="fade-up">
+          <div class="mb-6">
+            <span class="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+              Set ${currentSet} - Question ${currentQuestion + 1}
+            </span>
+          </div>
+          <h3 class="text-2xl font-bold mb-6 text-gray-800">${questionData.question}</h3>
+          <div class="space-y-3">
+            ${questionData.options.map((option, index) => `
+              <div class="option-btn" onclick="selectOption(${index}, '${option.career}')">
+                ${option.text}
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      updateProgress();
+      updateButtons();
+      updateSetIndicators();
+    }
+
+    function selectOption(optionIndex, career) {
+      // Remove previous selections
+      document.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+      
+      // Add selection to clicked option
+      document.querySelectorAll('.option-btn')[optionIndex].classList.add('selected');
+      
+      // Store answer
+      userAnswers[currentQuestionIndex] = {
+        question: currentQuestionIndex,
+        career: career,
+        set: currentSet,
+        questionInSet: currentQuestion
+      };
+
+      // Update career scores
+      careerScores[career]++;
+
+      // Enable next button
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+      if (!userAnswers[currentQuestionIndex]) {
+        alert('Please select an answer before proceeding!');
+        return;
+      }
+
+      currentQuestionIndex++;
+      currentQuestion++;
+
+      // Check if we need to move to next set
+      if (currentQuestion >= 10) {
+        currentSet++;
+        currentQuestion = 0;
+      }
+
+      // Check if quiz is complete
+      if (currentQuestionIndex >= totalQuestions) {
+        showResults();
+        return;
+      }
+
+      loadQuestion();
+    }
+
+    function previousQuestion() {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        currentQuestion--;
+        
+        // Check if we need to move to previous set
+        if (currentQuestion < 0) {
+          currentSet--;
+          currentQuestion = 9;
+        }
+        
+        loadQuestion();
+      }
+    }
+
+    function updateProgress() {
+      const progressBar = document.getElementById('progressBar');
+      const progress = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+      progressBar.style.width = progress + '%';
+      
+      document.getElementById('questionCounter').textContent = 
+        `Question ${currentQuestionIndex + 1} of ${totalQuestions}`;
+    }
+
+    function updateButtons() {
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      
+      prevBtn.style.display = currentQuestionIndex > 0 ? 'block' : 'none';
+      nextBtn.textContent = currentQuestionIndex >= totalQuestions - 1 ? 'View Results' : 'Next →';
+    }
+
+    function updateSetIndicators() {
+      // Reset all indicators
+      document.querySelectorAll('.set-indicator').forEach(indicator => {
+        indicator.className = 'set-indicator pending';
+      });
+
+      // Update completed sets
+      for (let i = 1; i < currentSet; i++) {
+        document.getElementById(`set${i}-indicator`).className = 'set-indicator completed';
+      }
+
+      // Update current set
+      document.getElementById(`set${currentSet}-indicator`).className = 'set-indicator active';
+    }
+
+    function showResults() {
+      document.getElementById('quizContainer').style.display = 'none';
+      document.getElementById('navigationButtons').style.display = 'none';
+      document.getElementById('resultsSection').classList.remove('hidden');
+
+      // Calculate top career matches
+      const sortedCareers = Object.entries(careerScores)
+        .sort(([,a], [,b]) => b - a)
+        .slice(0, 3);
+
+      const careerDescriptions = {
+        tech: {
+          name: "Technology & Software Development",
+          icon: "👨‍💻",
+          description: "Perfect for coding, app development, and tech innovation",
+          careers: ["Software Developer", "AI Specialist", "Cybersecurity Expert", "Data Scientist"]
+        },
+        business: {
+          name: "Business & Management",
+          icon: "👨‍💼",
+          description: "Ideal for leadership, strategy, and business operations",
+          careers: ["CEO", "Marketing Manager", "Business Analyst", "Entrepreneur"]
+        },
+        creative: {
+          name: "Creative Arts & Design",
+          icon: "👩‍🎨",
+          description: "Great for artistic expression and creative projects",
+          careers: ["Artist", "Graphic Designer", "Film Director", "Fashion Designer"]
+        },
+        science: {
+          name: "Science & Research",
+          icon: "👨‍🔬",
+          description: "Perfect for research, discovery, and scientific advancement",
+          careers: ["Scientist", "Researcher", "Astronomer", "Biotechnologist"]
+        },
+        service: {
+          name: "Service & Healthcare",
+          icon: "👨‍⚕️",
+          description: "Ideal for helping others and making a social impact",
+          careers: ["Doctor", "Nurse", "Social Worker", "Teacher"]
+        },
+        medical: {
+          name: "Medical & Healthcare",
+          icon: "👩‍⚕️",
+          description: "Perfect for healthcare and medical professions",
+          careers: ["Doctor", "Surgeon", "Pharmacist", "Veterinarian"]
+        },
+        legal: {
+          name: "Legal & Justice",
+          icon: "⚖️",
+          description: "Great for law, justice, and legal advocacy",
+          careers: ["Lawyer", "Judge", "Legal Consultant", "Paralegal"]
+        },
+        engineering: {
+          name: "Engineering & Construction",
+          icon: "👷‍♂️",
+          description: "Ideal for building and engineering solutions",
+          careers: ["Engineer", "Architect", "Civil Engineer", "Mechanical Engineer"]
+        }
+      };
+
+      let resultsHTML = '';
+      sortedCareers.forEach(([career, score], index) => {
+        const careerInfo = careerDescriptions[career];
+        const percentage = Math.round((score / totalQuestions) * 100);
+        
+        resultsHTML += `
+          <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-6 border-l-4 border-purple-500 text-left">
+            <div class="flex items-center mb-4">
+              <div class="text-4xl mr-4">${careerInfo.icon}</div>
+              <div>
+                <h3 class="text-xl font-bold text-gray-800">#${index + 1} ${careerInfo.name}</h3>
+                <p class="text-gray-600">${percentage}% match</p>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">${careerInfo.description}</p>
+            <div class="flex flex-wrap gap-2">
+              ${careerInfo.careers.map(c => `
+                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">${c}</span>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('resultsContent').innerHTML = resultsHTML;
+    }
+
+    function restartQuiz() {
+      // Reset all variables
+      currentSet = 1;
+      currentQuestion = 0;
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      careerScores = {
+        tech: 0,
+        business: 0,
+        creative: 0,
+        science: 0,
+        service: 0,
+        medical: 0,
+        legal: 0,
+        engineering: 0
+      };
+
+      // Show quiz sections
+      document.getElementById('quizContainer').style.display = 'block';
+      document.getElementById('navigationButtons').style.display = 'flex';
+      document.getElementById('resultsSection').classList.add('hidden');
+
+      // Load first question
+      loadQuestion();
+    }
+  </script>
+</body>
+</html>
