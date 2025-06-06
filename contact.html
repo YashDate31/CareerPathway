@@ -3,10 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Us - CareerPathway</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <title>Contact Us - CareerPathway</title>  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    .animate-pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes pulseGlow {
+      from { box-shadow: 0 0 40px 10px #6366f1, 0 0 80px 20px #a21caf33; }
+      to { box-shadow: 0 0 60px 15px #6366f1, 0 0 120px 30px #a21caf44; }
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
@@ -24,7 +38,33 @@
       <input type="email" id="email" class="w-full p-3 border rounded mb-4" placeholder="Your Email" required>
       <textarea id="message" class="w-full p-3 border rounded mb-4" placeholder="Your Message" rows="5" required></textarea>
       <button type="button" onclick="submitFeedback()" class="bg-indigo-700 text-white px-6 py-2 rounded">Submit</button>
-    </form>
+    </form>  </section>
+
+  <!-- Developer Info Card -->
+  <section class="flex justify-center items-center py-16 bg-gray-100" data-aos="fade-up">
+    <div class="relative w-full max-w-md">
+      <div class="animate-pulse-glow bg-black bg-opacity-90 rounded-2xl shadow-2xl p-8 text-white text-center border-2 border-gray-800">
+        <div class="absolute -top-8 left-1/2 transform -translate-x-1/2">
+         <p>🧑‍💻</p>
+        </div>
+        <div class="mt-10">
+          <h3 class="text-2xl font-bold mb-2 gradient-text">Computer Engineer</h3>
+          <p class="text-gray-300 mb-2"><b>DY Patil</b></p>
+          <p class="mb-2">
+            <a href="mailto:your.email@example.com" class="underline text-indigo-400 hover:text-indigo-200 transition">group1@gmail.com</a>
+          </p>
+          <p class="mb-4">
+            <a href="https://github.com/yourgithub" target="_blank" class="underline text-indigo-400 hover:text-indigo-200 transition">github.com/yourgithub</a>
+          </p>
+          <div class="flex flex-col items-center gap-1 mt-4">
+            <span class="text-gray-400 text-sm">Group Members:</span>
+            <span class="font-semibold text-white">Tanishka</span>
+            <span class="font-semibold text-white">Sharvani</span>
+          </div>
+          <div class="mt-4 text-xs text-gray-400 italic">(All website work and design by <span class="text-indigo-400 font-semibold">DY Patil</span>)</div>
+        </div>
+      </div>
+    </div>
   </section>
 
  
